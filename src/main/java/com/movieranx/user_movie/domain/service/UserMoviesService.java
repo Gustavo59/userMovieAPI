@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -83,6 +84,10 @@ public class UserMoviesService {
             log.error(e.getMessage());
             throw e;
         }
+    }
+
+    public List<UserMovies> listAllWatchedMovies(String userId){
+        return repository.findAllWatchedMoviesByUserId(userId);
     }
 
 }

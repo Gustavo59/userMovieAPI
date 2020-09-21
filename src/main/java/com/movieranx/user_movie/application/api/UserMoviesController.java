@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -96,6 +97,20 @@ public class UserMoviesController {
         }
 
         return new ResponseEntity<>("Rating deleted with success!", HttpStatus.OK);
+    }
+
+    @CrossOrigin("*")
+    @GetMapping("/findwatchedmovies/{userId}")
+    public ResponseEntity<?> listAllWatchedMovies(@PathVariable String userId){
+        List<UserMovies> userMoviesList;
+
+        try {
+            userMoviesList = service.listAllWatchedMovies(userId);
+        }catch (Exception e){
+            return new ResponseEntity<>("Could not retrieve list with movies watched by this user", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>(userMoviesList, HttpStatus.OK);
     }
 
 }
