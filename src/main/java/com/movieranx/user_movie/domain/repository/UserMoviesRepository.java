@@ -18,7 +18,13 @@ public interface UserMoviesRepository extends MongoRepository<UserMovies, String
 
     /*
     Para userId
-    Return all results that contains this user id
+    Return all watched movies that contains this user id
      */
-    List<UserMovies> findAllWatchedMoviesByUserId(String userId);
+    List<UserMovies> findAllMoviesByUserIdAndWatchedIsTrue(String userId);
+
+    /*
+    Para userId
+    Return all saved movies that contains this user id
+     */
+    List<UserMovies> findAllMoviesByUserIdAndSavedIsTrue(String userId);
 }

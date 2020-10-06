@@ -37,7 +37,14 @@ public class UserMoviesService {
         UserMovies response;
 
         try {
-            userMovies.setWatchedDate(new Date().toString());
+            if(userMovies.getSaved() == null){
+                userMovies.setWatchedDate(new Date().toString());
+                userMovies.setWatched(false);
+            }
+
+            if(userMovies.getWatched() == null){
+                userMovies.setWatched(false);
+            }
 
             if (userMovies.getFavorite() == null){
                 userMovies.setFavorite(false);
@@ -66,7 +73,9 @@ public class UserMoviesService {
             db.setId(userMovies.getId());
             db.setRating(userMovies.getRating());
             db.setFavorite(userMovies.getFavorite());
+            db.setSaved(userMovies.getSaved());
             db.setRatingUpdateDate(new Date().toString());
+            db.setSaved(userMovies.getSaved());
 
             repository.save(db);
 
@@ -87,7 +96,11 @@ public class UserMoviesService {
     }
 
     public List<UserMovies> listAllWatchedMovies(String userId){
-        return repository.findAllWatchedMoviesByUserId(userId);
+        return repository.findAllMoviesByUserIdAndWatchedIsTrue(userId);
+    }
+
+    public List<UserMovies> listAllSavedMovies(String userId){
+        return repository.findAllMoviesByUserIdAndSavedIsTrue(userId);
     }
 
 }

@@ -113,4 +113,18 @@ public class UserMoviesController {
         return new ResponseEntity<>(userMoviesList, HttpStatus.OK);
     }
 
+    @CrossOrigin("*")
+    @GetMapping("/findsavedmovies/{userId}")
+    public ResponseEntity<?> listAllSavedMovies(@PathVariable String userId){
+        List<UserMovies> userMoviesList;
+
+        try {
+            userMoviesList = service.listAllSavedMovies(userId);
+        }catch (Exception e){
+            return new ResponseEntity<>("Could not retrieve list with movies saved by this user", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>(userMoviesList, HttpStatus.OK);
+    }
+
 }

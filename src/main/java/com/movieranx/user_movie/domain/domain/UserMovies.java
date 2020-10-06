@@ -29,6 +29,10 @@ public class UserMovies {
 
     private Boolean favorite;
 
+    private Boolean saved;
+
+    private Boolean watched;
+
     private String watchedDate;
 
     private String ratingUpdateDate;
