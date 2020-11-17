@@ -127,4 +127,11 @@ public class UserMoviesController {
         return new ResponseEntity<>(userMoviesList, HttpStatus.OK);
     }
 
+
+    @CrossOrigin("*")
+    @GetMapping("getCollaborativeRecommendation")
+    public ResponseEntity<?> getCollaborativeRecommendation(){
+
+    }
+
 }

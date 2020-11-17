@@ -99,6 +99,8 @@ public class UserMoviesService {
         return repository.findAllMoviesByUserIdAndWatchedIsTrue(userId);
     }
 
+    public List<User>
+
     public List<UserMovies> listAllSavedMovies(String userId){
         return repository.findAllMoviesByUserIdAndSavedIsTrue(userId);
     }
