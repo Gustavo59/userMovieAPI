@@ -36,4 +36,6 @@ public class UserMovies {
     private String watchedDate;
 
     private String ratingUpdateDate;
+
+    private String imdbId;
 }
